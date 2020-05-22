@@ -1,0 +1,6 @@
+
+# Flask stuff:
+instance/
+.webassets-cache
+.vscode
+Procfile
