@@ -6,13 +6,14 @@ import plotly.graph_objs as go
 import pandas as pd
 
 if __name__=='__main__':
+    global app, server
     ###########################
     try:
         data = pd.read_csv('nyc_data.csv').reset_index()
     except:
         print("Problem with static file hosting!")
         data = pd.read_csv('/static/nyc_data.csv').reset_index()
-        
+
     np, cnp, tp, ctp = [], [] , [], []
     for index, row in data.iterrows():
         np.append(int(row['New Positives'].replace(",", '')))
@@ -108,7 +109,7 @@ if __name__=='__main__':
                 'data': [go.Bar(x=monthly_data.index, y=monthly_data[col], name='Monthly {}'.format(col))]
             }
 
-    global app, server
+    
     app = dash.Dash(__name__, static_url_path='/static/')
     server = app.server
     app.run_server(debug=True)
