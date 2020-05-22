@@ -7,7 +7,12 @@ import pandas as pd
 
 if __name__=='__main__':
     ###########################
-    data = pd.read_csv('nyc_data.csv').reset_index()
+    try:
+        data = pd.read_csv('nyc_data.csv').reset_index()
+    except:
+        print("Problem with static file hosting!")
+        data = pd.read_csv('/static/nyc_data.csv').reset_index()
+        
     np, cnp, tp, ctp = [], [] , [], []
     for index, row in data.iterrows():
         np.append(int(row['New Positives'].replace(",", '')))
