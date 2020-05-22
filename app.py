@@ -103,6 +103,7 @@ if __name__=='__main__':
                 'data': [go.Bar(x=monthly_data.index, y=monthly_data[col], name='Monthly {}'.format(col))]
             }
 
-    app = dash.Dash(__name__, static_url_path='/static')
+    global app, server
+    app = dash.Dash(__name__, static_url_path='/static/')
     server = app.server
-    app.run_server()
+    app.run_server(debug=True)
